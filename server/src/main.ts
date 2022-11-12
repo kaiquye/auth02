@@ -1,8 +1,12 @@
-import knex from './database/connection/knex.connection'
+import * as express from "express";
 
+const application = function (PORT) {
+  const server = express();
 
-const data = async () =>{
+  server.use(express.json());
+  server.get("/teste", (req, res) => console.log(req));
 
-}
+  server.listen(PORT, () => console.log("Bomb Has Been Planted..."));
+};
 
-data()
+application(3001);
