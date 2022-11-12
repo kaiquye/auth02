@@ -14,7 +14,10 @@ module.exports = {
       user : 'postgres',
       password : '1234',
       database : 'auth02'
-    }
+    },
+    migrations: {
+      directory: './src/database/migrations',
+    },
   },
 
   // staging: {
