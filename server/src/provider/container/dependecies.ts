@@ -1,4 +1,4 @@
-import { CreateUserUseCase } from '../../modules/user/useCases/createUser.useCase';
+import { CreateUserUseCase } from '../../modules/user/useCases/writing/createUser.useCase';
 import { ProviderDatabase } from '../../database/provider/provider.database';
 import { PasswordCrypto } from '../../utils/helpers/crypto/password.crypto';
 
