@@ -15,17 +15,12 @@ export interface IHttpRequest {
   };
 }
 
-export type IController = (data: IHttpRequest) => Promise<IHttpResponse>;
+export type IController = (body, params?, next?) => Promise<IHttpResponse>;
 
 export function HttpAdapter(controller: IController) {
   return async function (req: Request, res: Response) {
-    const httpRequest: IHttpRequest = {
-      body: req.body,
-      params: req.params,
-    };
-
     try {
-      const result = await controller(httpRequest);
+      const result = await controller(req.body, req.params);
       return res.status(result?.status || 200).json(result?.json);
     } catch (e) {
       console.log('ERROR ADAPTER', e);

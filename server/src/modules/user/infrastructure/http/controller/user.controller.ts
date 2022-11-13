@@ -1,11 +1,10 @@
-import { IHttpRequest, IHttpResponse } from '../../../../../utils/adapters/httpAdapter';
+import { IHttpResponse } from '../../../../../utils/adapters/httpAdapter';
 import { createUserResolver } from '../../../../../provider/container/dependecies';
+import { CreateUserDto } from '../dto/createUser.dto';
 
 class UserController {
-  async create(httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const user = httpRequest.body;
-
-    const response = await createUserResolver.execute(user);
+  async create(userDto: CreateUserDto): Promise<IHttpResponse> {
+    const response = await createUserResolver.execute(userDto);
 
     return {
       status: response.status,
