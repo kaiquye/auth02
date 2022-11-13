@@ -14,11 +14,11 @@ export abstract class Rep<Entity> implements IRep<Entity> {
     return this.queryBuilder(this.table).insert(t);
   }
 
-  delete(t: Entity): Promise<Entity> {
-    return Promise.resolve(undefined);
+  async delete(t: Entity): Promise<Entity> {
+    return this.queryBuilder(this.table).select();
   }
 
-  exists(t: Entity): Promise<boolean | Entity> {
-    return Promise.resolve(undefined);
+  async exists(t: Entity): Promise<boolean | Entity> {
+    return this.queryBuilder(this.table).select();
   }
 }
