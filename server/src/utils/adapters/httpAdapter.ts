@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
 export interface IHttpResponse {
   status?: number;
@@ -6,8 +6,8 @@ export interface IHttpResponse {
 }
 
 export interface IHttpRequest {
-  body: object;
-  params: object;
+  body: any;
+  params: any;
   user_infos?: {
     user_id: string | number;
     email: string;
@@ -28,7 +28,7 @@ export function HttpAdapter(controller: IController) {
       const result = await controller(httpRequest);
       return res.status(result?.status || 200).json(result?.json);
     } catch (e) {
-      console.log("ERROR ADAPTER", e);
+      console.log('ERROR ADAPTER', e);
     }
   };
 }

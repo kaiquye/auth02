@@ -1,6 +1,7 @@
 import { CreateUserUseCase } from '../../modules/user/useCases/createUser.useCase';
 import { ProviderDatabase } from '../../database/provider/provider.database';
+import { PasswordCrypto } from '../../utils/helpers/crypto/password.crypto';
 
-const createUserServices = new CreateUserUseCase(new ProviderDatabase());
+const createUserServices = new CreateUserUseCase(new ProviderDatabase(), new PasswordCrypto());
 
 export { createUserServices };

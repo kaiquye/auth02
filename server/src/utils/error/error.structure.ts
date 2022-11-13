@@ -2,7 +2,7 @@ export class Result<TypeError> {
   public status: 500;
   public success: false;
   public message?: string;
-  public value?: TypeError;
+  public value?: TypeError | {};
 
   private constructor(status, message?, object?, success?) {
     if (status < 200 || status > 500) {
@@ -15,10 +15,10 @@ export class Result<TypeError> {
   }
 
   public static ok<typeValue>(status: string | number, message?: string, value?: typeValue) {
-    return new Result<typeValue>(status, message, value, true);
+    return new Result<typeValue>(status, message, value || {}, true);
   }
 
   public static fail<typeError>(status: string | number, message: string, value?: typeError) {
-    return new Result<typeError>(status, message, value, false);
+    return new Result<typeError>(status, message, value || {}, false);
   }
 }

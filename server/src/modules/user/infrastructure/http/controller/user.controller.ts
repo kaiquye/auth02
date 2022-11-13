@@ -4,7 +4,9 @@ import { createUserServices } from '../../../../../provider/container/dependecie
 class UserController {
   async create(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     const create = createUserServices;
-    const response = await create.execute('');
+    const user = httpRequest.body;
+
+    const response = await create.execute(user);
 
     return {
       status: 201,
