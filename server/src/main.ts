@@ -1,10 +1,11 @@
 import * as express from "express";
+import applicationRoutes from "./provider/routes/application.routes";
 
 const application = function (PORT) {
   const server = express();
 
   server.use(express.json());
-  server.get("/teste", (req, res) => console.log(req));
+  server.use(applicationRoutes);
 
   server.listen(PORT, () => console.log("Bomb Has Been Planted..."));
 };
