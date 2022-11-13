@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
+import { IDtoEntityStructure } from '../dto/structure/dto.entity.structure';
 
-export function dtoValidator(dtoEntity) {
+export function dtoValidator(dtoEntity: IDtoEntityStructure | any) {
   return async function (req: Request, res: Response, next) {
     try {
       const dto = new dtoEntity({ ...req.body });
@@ -10,8 +11,8 @@ export function dtoValidator(dtoEntity) {
       if (error == undefined) {
         next();
       }
-    } catch (e) {
-      return res.status(400).json(e);
+    } catch (bodyReceivedNotCompatible) {
+      return res.status(400).json(bodyReceivedNotCompatible);
     }
   };
 }
