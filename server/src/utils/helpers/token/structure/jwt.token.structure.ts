@@ -1,4 +1,4 @@
 export interface IJwtTokenStructure {
-  generate(payload?: string);
+  generate(payload?: string | object);
   validate(jwt: string);
 }

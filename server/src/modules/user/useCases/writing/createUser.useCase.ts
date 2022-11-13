@@ -4,7 +4,7 @@ import { UserEntity } from '../../entity/user.entity';
 import { IProviderDatabase } from '../../../../database/provider/structure/IApplicationRepositorys.structure';
 import { IPasswordCryptoStructure } from '../../../../utils/helpers/crypto/structure/password.crypto.structure';
 
-export class CreateUserUseCase extends IUseCase<UserEntity, any> {
+export class CreateUserUseCase extends IUseCase<UserEntity, Promise<Result<UserEntity>>> {
   private readonly userAlready = 'informed email already registered';
   private readonly userCreated = 'user created successfully';
 
