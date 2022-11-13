@@ -3,30 +3,24 @@ import { Result } from '../../../utils/error/error.structure';
 import { UserEntity } from '../entity/user.entity';
 import { IProviderDatabase } from '../../../database/provider/structure/IApplicationRepositorys.structure';
 
-export class CreateUserUseCase extends IUseCase<{}, any> {
+export class CreateUserUseCase extends IUseCase<UserEntity, any> {
+  private readonly userAlready = 'informed email already registered';
+  private readonly userCreated = 'user created successfully';
+
   constructor(private repository: IProviderDatabase) {
     super();
   }
 
-  async execute(data): Promise<Result<UserEntity>> {
+  async execute(data: UserEntity): Promise<Result<UserEntity>> {
     try {
-      const created = await this.repository.userRep.save({
-        last_name: 'tested',
-        fist_name: 'tested',
-        email: 'assdsd',
-        password: 'asdas',
-      });
+      const email = await this.repository.user.exists({ email: data.email });
 
-      const user = await this.repository.userRep.exists({
-        last_name: 'tested',
-        fist_name: 'tested',
-        email: 'asdsd',
-        password: 'asdas',
-      });
+      if (email) {
+        return this.fail(409, this.userAlready);
+      }
 
-      console.log(user);
-
-      return undefined;
+      data.password = undefined;
+      return this.success<UserEntity>(201, this.userCreated, data);
     } catch (e) {
       console.log(e);
     }
