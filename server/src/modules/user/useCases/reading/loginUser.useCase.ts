@@ -3,6 +3,7 @@ import { Result } from '../../../../utils/error/error.structure';
 import { IProviderDatabase } from '../../../../database/provider/structure/IApplicationRepositorys.structure';
 import { IPasswordCryptoStructure } from '../../../../utils/helpers/crypto/structure/password.crypto.structure';
 import { IJwtTokenStructure } from '../../../../utils/helpers/token/structure/jwt.token.structure';
+import userRoutes from '../../infrastructure/http/routes/user.routes';
 
 export class LoginUserUseCase extends IUseCase<ILoginUserReq, Promise<Result<ILoginUserRes>>> {
   private readonly logged = 'user logged in successfully';
@@ -19,11 +20,11 @@ export class LoginUserUseCase extends IUseCase<ILoginUserReq, Promise<Result<ILo
     try {
       const userExists = await this.repository.user.exists({ email: data.email });
 
-      if (userExists) {
+      if (!userExists[0]) {
         return this.fail(404, this.userNotFound);
       }
 
-      const match = this.passwordCrypto.compare(data.password, userExists[0].password);
+      const match = await this.passwordCrypto.compare(data.password, userExists[0].password);
 
       if (!match) {
         return this.fail(404, this.userNotFound);
@@ -31,7 +32,7 @@ export class LoginUserUseCase extends IUseCase<ILoginUserReq, Promise<Result<ILo
 
       const token = this.jwt.generate({ email: data.email });
 
-      return this.success<ILoginUserRes>(200, this.logged, { token, access: null });
+      return this.success<ILoginUserRes>(200, this.logged, { token, access: 'full' });
     } catch (e) {
       return this.fail(500, this.msgInternalError);
     }
