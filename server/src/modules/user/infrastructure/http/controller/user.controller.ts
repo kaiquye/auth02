@@ -11,6 +11,8 @@ class UserController {
       json: response,
     };
   }
+
+  async login(loginDto: LoginUserDto): Promise<IHttpResponse> {}
 }
 
 export default new UserController();
