@@ -7,7 +7,7 @@ class UserController {
     const response = await create.execute('');
 
     return {
-      status: response.status,
+      status: 201,
       json: response,
     };
   }

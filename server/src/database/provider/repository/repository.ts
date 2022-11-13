@@ -1,17 +1,17 @@
 import { IRep } from '../structure/IRepository.structure';
-import { Knex } from 'knex';
+import { TablesDb } from '../structure/tables.enum';
 
 export abstract class Rep<Entity> implements IRep<Entity> {
   private readonly table: string;
-  private readonly queryBuilder: Knex;
+  private readonly queryBuilder;
 
-  constructor(table: string, queryBuilder: Knex) {
+  constructor(table: TablesDb, queryBuilder) {
     this.table = table;
     this.queryBuilder = queryBuilder;
   }
 
   async save(t: Entity): Promise<any> {
-    return this.queryBuilder(this.table).select();
+    return this.queryBuilder(this.table).insert(t);
   }
 
   delete(t: Entity): Promise<Entity> {
