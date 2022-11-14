@@ -17,6 +17,7 @@ export class CreateUserUseCase extends IUseCase<UserEntity, Promise<Result<UserE
 
   async execute(data: UserEntity): Promise<Result<UserEntity>> {
     try {
+      console.log(data);
       const email = await this.repository.user.exists({ email: data.email });
 
       if (email[0]) {
@@ -34,6 +35,7 @@ export class CreateUserUseCase extends IUseCase<UserEntity, Promise<Result<UserE
       data.password = undefined;
       return this.success<UserEntity>(201, this.userCreated, data);
     } catch (error) {
+      console.log(error);
       return this.fail(500, this.msgInternalError);
     }
   }

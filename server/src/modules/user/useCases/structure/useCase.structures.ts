@@ -5,8 +5,13 @@ export interface ILoginUserReq {
   password: string;
 }
 
+export interface IRefreshTokenReq {
+  email: string;
+}
+
 export interface ILoginUserRes {
   token: string;
+  refresh_token?: string;
   access: string | [];
 }
 

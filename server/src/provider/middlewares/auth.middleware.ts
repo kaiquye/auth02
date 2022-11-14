@@ -21,7 +21,7 @@ export class AuthMiddleware {
 
       next();
     } catch (invalidToken) {
-      return res.status(401).json({ success: false, message: 'invalid token' });
+      return res.status(401).json({ success: false, message: 'token was not informed correctly' });
     }
   }
 }

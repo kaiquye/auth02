@@ -11,4 +11,14 @@ export class JwtToken implements IJwtTokenStructure {
   validate(token: string) {
     return jwt.verify(token, process.env.SECRET);
   }
+
+  generateRefreshToken(payload?: string | object) {
+    return jwt.sign(payload, process.env.SECRET_REFRESH_TOKEN, {
+      expiresIn: process.env.TIME_TOKEN_REFRESH_TOKEN,
+    });
+  }
+
+  validateRefreshToken(token: string) {
+    return jwt.verify(token, process.env.SECRET_REFRESH_TOKEN);
+  }
 }
