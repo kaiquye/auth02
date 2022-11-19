@@ -25,11 +25,13 @@ class UserController {
     return {
       status: response.status,
       json: response,
+      cookie: { name: 'refresh-token', value: response.value['refresh_token'] },
     };
   }
 
-  async refreshToken(email: string): Promise<IHttpResponse> {
-    const response = await refreshTokenResolver.execute({ email });
+  async refreshToken(refreshTokenDto): Promise<IHttpResponse> {
+    console.log('pasoouw');
+    const response = await refreshTokenResolver.execute({ email: refreshTokenDto.user_infos });
 
     return {
       status: response.status,

@@ -15,7 +15,15 @@ userRoutes.post(
   dtoValidator(CreateUserDto, 'BODY'),
   HttpAdapter(UserController.create, 'add-user-infos'),
 );
-userRoutes.post('/login', dtoValidator(LoginUserDto, 'BODY'), HttpAdapter(UserController.login));
-userRoutes.post('/refresh-token', RefreshTokenMiddleware, HttpAdapter(UserController.refreshToken));
+userRoutes.post(
+  '/login',
+  dtoValidator(LoginUserDto, 'BODY'),
+  HttpAdapter(UserController.login, 'not-user-infos'),
+);
+userRoutes.post(
+  '/refresh-token',
+  RefreshTokenMiddleware,
+  HttpAdapter(UserController.refreshToken, 'add-user-infos'),
+);
 
 export default userRoutes;

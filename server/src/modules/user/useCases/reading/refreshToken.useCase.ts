@@ -11,7 +11,6 @@ export class RefreshTokenUseCase extends IUseCase<IRefreshTokenReq, Promise<Resu
     super();
   }
   async execute(data: IRefreshTokenReq): Promise<Result<ILoginUserRes>> {
-    console.log(data);
     try {
       const activeUser = await this.repository.user.exists({
         email: data.email,
@@ -21,13 +20,14 @@ export class RefreshTokenUseCase extends IUseCase<IRefreshTokenReq, Promise<Resu
         return this.fail(403, this.userInactive);
       }
 
-      const newToken = new JwtToken().generate(data.email);
+      const newToken = new JwtToken().generate({ email: data.email });
 
       return this.success<ILoginUserRes>(201, this.createdToken, {
         token: newToken,
         access: 'full',
       });
     } catch (e) {
+      console.log(e);
       return this.fail(500, this.msgInternalError);
     }
   }

@@ -33,7 +33,11 @@ export class LoginUserUseCase extends IUseCase<ILoginUserReq, Promise<Result<ILo
       const token = this.jwt.generate({ email: data.email });
       const refresh_token = this.jwt.generateRefreshToken({ email: data.email });
 
-      return this.success<ILoginUserRes>(200, this.logged, { token, access: 'full', refresh_token });
+      return this.success<ILoginUserRes>(200, this.logged, {
+        token,
+        access: 'full',
+        refresh_token: 'bearer ' + refresh_token,
+      });
     } catch (e) {
       console.log(e);
       return this.fail(500, this.msgInternalError);
