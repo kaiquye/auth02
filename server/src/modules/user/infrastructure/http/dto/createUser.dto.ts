@@ -1,6 +1,6 @@
 import { validateOrReject, IsString, IsOptional, IsEmail } from 'class-validator';
 import { IDtoEntityStructure } from './structure/dto.entity.structure';
-import { UserEntity } from '../../../entity/user.entity';
+import { UserEntity } from '../../../domain/user.entity';
 
 export class CreateUserDto implements IDtoEntityStructure, UserEntity {
   @IsString()

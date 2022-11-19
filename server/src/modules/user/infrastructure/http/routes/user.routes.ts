@@ -2,10 +2,10 @@ import { Router } from 'express';
 import { HttpAdapter } from '../../../../../utils/adapters/httpAdapter';
 import UserController from '../controller/user.controller';
 import { CreateUserDto } from '../dto/createUser.dto';
-import { dtoValidator } from '../../../../../provider/middlewares/validador.transfer.object';
+import { dtoValidator } from '../../../../../shared/middlewares/validador.transfer.object';
 import { LoginUserDto } from '../dto/loginUser.dto';
-import AuthMiddleware from '../../../../../provider/middlewares/auth.middleware';
-import RefreshTokenMiddleware from '../../../../../provider/middlewares/refreshToken.middleware';
+import AuthMiddleware from '../../../../../shared/middlewares/auth.middleware';
+import RefreshTokenMiddleware from '../../../../../shared/middlewares/refreshToken.middleware';
 
 const userRoutes = Router();
 

@@ -1,6 +1,6 @@
 import { IUseCase } from '../structure/useCase.structures';
 import { Result } from '../../../../utils/error/error.structure';
-import { UserEntity } from '../../entity/user.entity';
+import { UserEntity } from '../../domain/user.entity';
 import { IProviderDatabase } from '../../../../database/provider/structure/IApplicationRepositorys.structure';
 import { IPasswordCryptoStructure } from '../../../../utils/helpers/crypto/structure/password.crypto.structure';
 

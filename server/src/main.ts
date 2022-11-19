@@ -2,7 +2,7 @@ import * as express from 'express';
 import 'dotenv/config';
 import * as cors from 'cors';
 import * as cookieParser from 'cookie-parser';
-import applicationRoutes from './provider/routes/application.routes';
+import applicationRoutes from './shared/routes/application.routes';
 
 const application = function (PORT) {
   const server = express();

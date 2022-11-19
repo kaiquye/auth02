@@ -3,7 +3,7 @@ import {
   createUserResolver,
   loginUserResolver,
   refreshTokenResolver,
-} from '../../../../../provider/container/dependecies';
+} from '../../../../../shared/container/dependecies';
 import { CreateUserDto } from '../dto/createUser.dto';
 import { LoginUserDto } from '../dto/loginUser.dto';
 
