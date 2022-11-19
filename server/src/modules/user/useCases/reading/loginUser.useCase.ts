@@ -3,7 +3,6 @@ import { Result } from '../../../../utils/error/error.structure';
 import { IProviderDatabase } from '../../../../database/provider/structure/IApplicationRepositorys.structure';
 import { IPasswordCryptoStructure } from '../../../../utils/helpers/crypto/structure/password.crypto.structure';
 import { IJwtTokenStructure } from '../../../../utils/helpers/token/structure/jwt.token.structure';
-import userRoutes from '../../infrastructure/http/routes/user.routes';
 
 export class LoginUserUseCase extends IUseCase<ILoginUserReq, Promise<Result<ILoginUserRes>>> {
   private readonly logged = 'user logged in successfully';

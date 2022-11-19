@@ -1,5 +1,5 @@
 import { CreateUserUseCase } from '../../modules/user/useCases/writing/createUser.useCase';
-import { ProviderDatabase } from '../../database/provider/provider.database';
+import { ProviderDatabase } from '../../database/provider/Index';
 import { PasswordCrypto } from '../../utils/helpers/crypto/password.crypto';
 import { LoginUserUseCase } from '../../modules/user/useCases/reading/loginUser.useCase';
 import { JwtToken } from '../../utils/helpers/token/jwt.token';
