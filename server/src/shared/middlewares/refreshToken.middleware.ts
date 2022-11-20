@@ -4,8 +4,6 @@ class RefreshTokenMiddleware {
   validate(req, res, next) {
     const authorization = req.cookies?.['refresh-token'];
 
-    console.log(authorization);
-
     if (!authorization) {
       return res.status(401).json({ success: false, message: 'refresh token not informed' });
     }

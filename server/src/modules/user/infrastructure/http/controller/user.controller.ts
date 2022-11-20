@@ -30,7 +30,6 @@ class UserController {
   }
 
   async refreshToken(refreshTokenDto): Promise<IHttpResponse> {
-    console.log('pasoouw');
     const response = await refreshTokenResolver.execute({ email: refreshTokenDto.user_infos });
 
     return {
