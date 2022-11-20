@@ -55,7 +55,7 @@ userRoutes.post(
 
 #### Auth Context
 
-- The useR common token is saved in memory (variable or state) in the browser. Whenever the user reloads the page, a new request is made to the back-end accessing the refres-token route sent to the session by the cookie. If the session is still valid, a new short-lived token is returned.
+- The user common token is saved in memory (variable or state) in the browser. Whenever the user reloads the page, a new request is made to the back-end accessing the refres-token route sent to the session by the cookie. If the session is still valid, a new short-lived token is returned.
 
 ```js 
 
