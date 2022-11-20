@@ -5,7 +5,6 @@ import { JwtToken } from '../../../../../utils/helpers/token/jwt.token';
 import { loginUserMock } from './mock/loginUser.mock';
 import { IPasswordCryptoStructure } from '../../../../../utils/helpers/crypto/structure/password.crypto.structure';
 import { IJwtTokenStructure } from '../../../../../utils/helpers/token/structure/jwt.token.structure';
-import fa from '@faker-js/faker/dist/types/locales/fa';
 
 describe('login user', () => {
   let repository: jest.Mocked<IUserRep>;
@@ -82,5 +81,12 @@ describe('login user', () => {
 
     expect(result.status).toEqual(404);
     expect(result.message).toEqual('informed user was not found in the database');
+  });
+
+  it('should return an internal error', async () => {
+    const result = await sut.execute(undefined as any);
+
+    expect(result.status).toEqual(500);
+    expect(result.message).toEqual('an internal error occurred in the user module, contact an administrator');
   });
 });

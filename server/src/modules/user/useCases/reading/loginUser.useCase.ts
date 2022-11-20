@@ -42,7 +42,6 @@ class LoginUserUseCase extends IUseCase<ILoginUserReq, Promise<Result<ILoginUser
         refresh_token: 'bearer ' + refresh_token,
       });
     } catch (e) {
-      console.log(e);
       return this.fail(500, this.msgInternalError);
     }
   }
