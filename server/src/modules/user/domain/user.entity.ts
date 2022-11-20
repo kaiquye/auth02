@@ -4,7 +4,7 @@ export class UserEntity {
   public email: string;
   public password: string;
 
-  constructor(fistName: string, lastName: '', email: string, password: string) {
+  constructor(fistName: string, lastName: '' | string, email: string, password: string) {
     this.fist_name = fistName;
     this.last_name = lastName;
     this.email = email;

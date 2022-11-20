@@ -2,8 +2,8 @@ import { IRep } from '../structure/IRepository.structure';
 import { TablesDb } from '../structure/tables.enum';
 
 export abstract class Rep<Entity> implements IRep<Entity> {
-  private readonly table: string;
-  private readonly queryBuilder;
+  readonly table: string;
+  readonly queryBuilder;
 
   constructor(table: TablesDb, queryBuilder) {
     this.table = table;
