@@ -7,12 +7,9 @@ export const AuthContextProvider = function ({ children }) {
   const [Token, setToken] = React.useState(false);
 
   useEffect(() => {
-    console.log(Token);
     if (!Token) {
       async function RefreshToken() {
-        const response = await UserService.refreshToken(
-          localStorage.getItem("refresh-token")
-        );
+        const response = await UserService.refreshToken();
 
         setToken(response.token);
       }
