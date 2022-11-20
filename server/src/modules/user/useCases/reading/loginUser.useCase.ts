@@ -24,6 +24,9 @@ class LoginUserUseCase extends IUseCase<ILoginUserReq, Promise<Result<ILoginUser
         return this.fail(404, this.userNotFound);
       }
 
+      console.log(data);
+      console.log(userExists);
+
       const match = await this.passwordCrypto.compare(data.password, userExists[0].password);
 
       if (!match) {

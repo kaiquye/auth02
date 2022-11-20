@@ -3,22 +3,22 @@ import { IJwtTokenStructure } from './structure/jwt.token.structure';
 
 export class JwtToken implements IJwtTokenStructure {
   generate(payload?: string | object) {
-    return jwt.sign(payload, process.env.SECRET, {
-      expiresIn: process.env.TIME_TOKEN,
+    return jwt.sign(payload, 'process.env.SECRET', {
+      expiresIn: '1000s',
     });
   }
 
   validate(token: string) {
-    return jwt.verify(token, process.env.SECRET);
+    return jwt.verify(token, 'process.env.SECRET');
   }
 
   generateRefreshToken(payload?: string | object) {
-    return jwt.sign(payload, process.env.SECRET_REFRESH_TOKEN, {
-      expiresIn: process.env.TIME_TOKEN_REFRESH_TOKEN,
+    return jwt.sign(payload, 'process.env.SECRET_REFRESH_TOKEN', {
+      expiresIn: '2000s',
     });
   }
 
   validateRefreshToken(token: string) {
-    return jwt.verify(token, process.env.SECRET_REFRESH_TOKEN);
+    return jwt.verify(token, 'process.env.SECRET_REFRESH_TOKEN');
   }
 }

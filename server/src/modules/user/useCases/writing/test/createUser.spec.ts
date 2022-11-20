@@ -3,7 +3,7 @@ import { PasswordCrypto } from '../../../../../utils/helpers/crypto/password.cry
 import { IUserRep } from '../../../infrastructure/repository/structure/repository.structure';
 import { UserMock } from './mock/user.mock';
 
-describe('', () => {
+describe('create new user', () => {
   let repository: jest.Mocked<IUserRep>;
   let sut: CreateUserUseCase;
 
