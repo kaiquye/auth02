@@ -3,7 +3,7 @@ import { PasswordCrypto } from '../../../../../utils/helpers/crypto/password.cry
 import { IUserRep } from '../../../infrastructure/repository/structure/repository.structure';
 import { UserMock } from './mock/user.mock';
 
-describe('', () => {
+describe('create new user', () => {
   let repository: jest.Mocked<IUserRep>;
   let sut: CreateUserUseCase;
 
@@ -38,6 +38,7 @@ describe('', () => {
 
     const result = await sut.execute(UserMock);
 
+    expect(result.value).toHaveProperty('password', undefined);
     expect(result.value).toEqual(UserMock);
     expect(result.success).toEqual(true);
   });
@@ -49,5 +50,12 @@ describe('', () => {
     expect(result.message).toEqual('informed email already registered');
     expect(result.value).toEqual({});
     expect(result.success).toEqual(false);
+  });
+
+  it('should return an internal error', async () => {
+    const error = await sut.execute(undefined as any);
+
+    expect(error.message).toEqual('an internal error occurred in the user module, contact an administrator');
+    expect(error.status).toEqual(500);
   });
 });

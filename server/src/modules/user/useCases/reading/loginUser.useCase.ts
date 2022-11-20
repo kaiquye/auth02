@@ -24,6 +24,9 @@ class LoginUserUseCase extends IUseCase<ILoginUserReq, Promise<Result<ILoginUser
         return this.fail(404, this.userNotFound);
       }
 
+      console.log(data);
+      console.log(userExists);
+
       const match = await this.passwordCrypto.compare(data.password, userExists[0].password);
 
       if (!match) {
@@ -39,7 +42,6 @@ class LoginUserUseCase extends IUseCase<ILoginUserReq, Promise<Result<ILoginUser
         refresh_token: 'bearer ' + refresh_token,
       });
     } catch (e) {
-      console.log(e);
       return this.fail(500, this.msgInternalError);
     }
   }
