@@ -28,7 +28,7 @@
 userRoutes.post(
   '/login',
   AuthMiddleware,
-  dtoValidator(CreateUserDto, 'BODY'),
+  dtoValidator(LoginUserDto, 'BODY'),
   HttpAdapter(UserController.create, 'add-user-infos'),
 );
 ```
