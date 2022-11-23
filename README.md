@@ -26,7 +26,7 @@
 
 ```js
 userRoutes.post(
-  '/create',
+  '/login',
   AuthMiddleware,
   dtoValidator(CreateUserDto, 'BODY'),
   HttpAdapter(UserController.create, 'add-user-infos'),
